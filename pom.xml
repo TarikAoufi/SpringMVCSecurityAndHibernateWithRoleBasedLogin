@@ -1,0 +1,209 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>fr.aoufi.springmvcsecurity</groupId>
+	<artifactId>SpringMVCSecurityAndHibernateWithRoleBasedLogin</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+	<name>SpringMVCSecurityAndHibernateWithRoleBasedLogin</name>
+	
+	<properties>
+		<springframework.version>5.0.6.RELEASE</springframework.version> 
+		<springsecurity.version>5.0.5.RELEASE</springsecurity.version>
+		<hibernate.version>5.3.1.Final</hibernate.version>
+		<hibernatevalidator.version>5.4.2.Final</hibernatevalidator.version>
+		<c3p0.version>0.9.5.2</c3p0.version>
+		<mysql.connector.version>8.0.11</mysql.connector.version>
+		<validation.version>1.1.0.Final</validation.version>
+		<servlets.version>4.0.1</servlets.version>
+		<jsp.version>2.3.2-b02</jsp.version>
+		<jstl.version>1.2</jstl.version>
+		<commonsdbcp2.version>2.2.0</commonsdbcp2.version>
+		<logback.version>1.2.3</logback.version>
+		<junit.version>4.12</junit.version>
+		<maven.compiler.target>1.9</maven.compiler.target>
+		<maven.compiler.source>1.9</maven.compiler.source>
+	</properties>
+	
+	<dependencies>
+		<!-- Spring -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${springframework.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${springframework.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${springframework.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${springframework.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${springframework.version}</version>
+		</dependency>
+		
+		<!-- Spring Security -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${springsecurity.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${springsecurity.version}</version>
+		</dependency>
+		<dependency>
+    		<groupId>org.springframework.security</groupId>
+    		<artifactId>spring-security-taglibs</artifactId>
+    		<version>${springsecurity.version}</version>
+		</dependency>
+        
+        <!-- Hibernate 5.3.1 Final -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${hibernate.version}</version>
+		</dependency>
+		
+		<!-- Hibernate-C3P0 Integration -->
+		<dependency>
+		    <groupId>org.hibernate</groupId>
+		    <artifactId>hibernate-c3p0</artifactId>
+		    <version>${hibernate.version}</version>
+	  	</dependency>
+		
+		<!-- c3p0 -->
+	  	<dependency>
+		    <groupId>com.mchange</groupId>
+		    <artifactId>c3p0</artifactId>
+		    <version>${c3p0.version}</version>
+	 	</dependency>
+			
+		<!-- Mysql Connector -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql.connector.version}</version>
+		</dependency>
+		
+		<!-- JSR303 Validator --> 
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>${validation.version}</version>
+		</dependency>
+		<!-- Hibernate Validator -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>${hibernatevalidator.version}</version>
+		</dependency>
+		
+		<!-- Servlet+JSP+JSTL Dependency -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>${servlets.version}</version>
+         	<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>javax.servlet.jsp-api</artifactId>
+			<version>${jsp.version}</version>
+         	<scope>provided</scope>
+		</dependency>
+		<dependency>
+		    <groupId>javax.servlet</groupId>
+		    <artifactId>jstl</artifactId>
+		    <version>${jstl.version}</version>
+		</dependency>
+		
+		<!-- Apache Common DBCP2  -->
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-dbcp2</artifactId>
+		    <version>${commonsdbcp2.version}</version>
+		</dependency>
+		
+		<!-- SLF4J/Logback -->
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${logback.version}</version>
+		</dependency>
+		
+		<!-- JUnit -->
+		<dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        
+        <!-- Java 6 = JAX-B Version 2.0   -->
+		<!-- Java 7 = JAX-B Version 2.2.3 -->
+		<!-- Java 8 = JAX-B Version 2.2.8 -->
+        <dependency>
+		    <groupId>javax.xml.bind</groupId>
+		    <artifactId>jaxb-api</artifactId>
+		    <version>2.2.11</version>
+		</dependency>
+		<dependency>
+		    <groupId>com.sun.xml.bind</groupId>
+		    <artifactId>jaxb-core</artifactId>
+		    <version>2.2.11</version>
+		</dependency>
+		<dependency>
+		    <groupId>com.sun.xml.bind</groupId>
+		    <artifactId>jaxb-impl</artifactId>
+		    <version>2.2.11</version>
+		</dependency>       	
+	</dependencies>
+	
+	<build>
+		<pluginManagement>
+			<plugins>
+				<!-- Embedded Jetty HTTP Server for testing war application -->
+		        <plugin>
+					<groupId>org.eclipse.jetty</groupId>
+					<artifactId>jetty-maven-plugin</artifactId>
+					<version>9.4.8.v20171121</version>
+				</plugin>
+				<plugin>
+	                <groupId>org.apache.maven.plugins</groupId>
+	                <artifactId>maven-compiler-plugin</artifactId>
+	                <version>3.7.0</version>
+	                <configuration>
+	                    <source>9</source>
+	                    <target>9</target>
+	                    <showWarnings>true</showWarnings>
+	                    <showDeprecation>true</showDeprecation>
+	                </configuration>
+	            </plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>2.6</version>
+					<configuration>
+						<warSourceDirectory>src/main/webapp</warSourceDirectory>
+						<warName>SpringMVCSecurityAndHibernateWithRoleBasedLogin</warName>
+						<failOnMissingWebXml>false</failOnMissingWebXml>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<finalName>SpringMVCSecurityAndHibernateWithRoleBasedLogin</finalName>
+	</build>
+</project>
