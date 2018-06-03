@@ -3,22 +3,39 @@
 Les outils et technologies utilisés pour cette application sont:
 
 Spring MVC 5.0.6.RELEASE
+
 Spring ORM 5.0.6.RELEASE
+
 Spring Security 5.0.5.RELEASE
+
 Hibernate Core 5.3.1.Final
+
 Hibernate Validator 5.4.2.Final
+
 C3p0 0.9.5.2
+
 Servlet API 4.0.1
+
 JSP API 2.3.2-b02
+
 JSTL 1.2
+
 MySQL Connector 8.0.11
+
 Common DBCP2 2.2.0
+
 JAX-B API 2.2.11
+
 JDK 1.9
+
 Bootstrap v4.0.0 
+
 Maven 3.7.0
+
 Jetty Maven plugin 9.4.8
+
 Eclipse Oxygen.3a Release (4.7.3a)
+
 MySQL Server 5.7
 
 
