@@ -38,6 +38,9 @@ Les outils et technologies utilisés pour cette application sont:
 
 •	MySQL Server 5.7
 
+•	lombok 1.18.12
+
+
 
 
 
