@@ -2,13 +2,13 @@
 
 Les outils et technologies utilisés pour cette application sont:
 
-•	Spring MVC 5.0.6.RELEASE
+•	Spring MVC 5.2.2.RELEASE
 
-•	Spring ORM 5.0.6.RELEASE
+•	Spring Core 5.2.2.RELEASE
 
-•	Spring Security 5.0.5.RELEASE
+•	Spring Security 5.2.2.RELEASE
 
-•	Hibernate Core 5.3.1.Final
+•	Hibernate Core 5.4.10.Final
 
 •	Hibernate Validator 5.4.2.Final
 
@@ -20,7 +20,7 @@ Les outils et technologies utilisés pour cette application sont:
 
 •	JSTL 1.2
 
-•	MySQL Connector 8.0.11
+•	MySQL Connector 8.0.18
 
 •	Common DBCP2 2.2.0
 
