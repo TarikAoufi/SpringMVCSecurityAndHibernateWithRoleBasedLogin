@@ -36,10 +36,11 @@ public class ApplicationConfiguration implements WebMvcConfigurer {
 	RoleConverter roleConverter;
 	
 	/**
-	 * Configurer ViewResolvers pour fournir des vues préférées.
-	 * InternalResourceViewResolver: Aide à mapper les noms des vues logiques pour afficher 
-	 * directement les fichiers dans un certain répertoire préconfiguré.
+	 * Configurer ViewResolvers pour fournir des vues prÃ©fÃ©rÃ©es.
+	 * InternalResourceViewResolver: Aide Ã  mapper les noms des vues logiques pour afficher 
+	 * directement les fichiers dans un certain rÃ©pertoire prÃ©configurÃ©.
 	 */
+	@Override
 	public void configureViewResolvers(ViewResolverRegistry registry) {
 		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
 		viewResolver.setViewClass(JstlView.class);
@@ -50,7 +51,7 @@ public class ApplicationConfiguration implements WebMvcConfigurer {
 	
 	/**
      * Configurer MessageSource pour rechercher tout message de validation / d'erreur 
-     * dans les fichiers de propriétés internationalisés.
+     * dans les fichiers de propriÃ©tÃ©s internationalisÃ©s.
      * @return
      */
 	@Bean({"messageSource"})
@@ -65,21 +66,24 @@ public class ApplicationConfiguration implements WebMvcConfigurer {
 	/**
 	 * Configurer ResourceHandlers pour servir des ressources statiques comme CSS/Javascript etc ...
 	 */
+	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler(new String[]{"/resources/**"}).addResourceLocations(new String[]{"/static/"})
+		registry.addResourceHandler("/resources/**").addResourceLocations("/static/")
 				.setCacheControl(CacheControl.maxAge(2L, TimeUnit.HOURS).cachePublic());
-		registry.addResourceHandler(new String[]{"/static/**"}).addResourceLocations(new String[]{"/static/"})
+		registry.addResourceHandler("/static/**").addResourceLocations("/static/")
 				.setCacheControl(CacheControl.maxAge(2L, TimeUnit.HOURS).cachePublic());
 	}
 	
 	/**
-	 * Configurer le convertisseur à utiliser.
-	 * Dans notre exemple, nous avons besoin d'un convertisseur pour convertir les valeurs de chaîne [Roles] en Roles
+	 * Configurer le convertisseur Ã  utiliser.
+	 * Dans notre exemple, nous avons besoin d'un convertisseur pour convertir les valeurs de chaÃ®ne [Roles] en Roles
 	 */
+	@Override
 	public void addFormatters(FormatterRegistry registry) {
 		registry.addConverter(this.roleConverter);
 	}
-
+	
+	@Override
 	public void configurePathMatch(PathMatchConfigurer matcher) {
 		matcher.setUseRegisteredSuffixPatternMatch(Boolean.valueOf(true));
 	}
@@ -100,8 +104,7 @@ public class ApplicationConfiguration implements WebMvcConfigurer {
 
 	@Bean
 	public LocaleResolver localeResolver() {
-		CookieLocaleResolver localeResolver = new CookieLocaleResolver();
-		return localeResolver;
+		return  new CookieLocaleResolver();
 	}
 
 	@Bean
@@ -117,7 +120,8 @@ public class ApplicationConfiguration implements WebMvcConfigurer {
 		localeChangeInterceptor.setParamName("lang");
 		return localeChangeInterceptor;
 	}
-
+	
+	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(this.themeChangeInterceptor());
 		registry.addInterceptor(this.localeChangeInterceptor());
