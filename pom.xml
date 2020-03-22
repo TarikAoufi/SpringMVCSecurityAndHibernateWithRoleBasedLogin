@@ -8,12 +8,12 @@
 	<name>SpringMVCSecurityAndHibernateWithRoleBasedLogin</name>
 	
 	<properties>
-		<springframework.version>5.0.6.RELEASE</springframework.version> 
-		<springsecurity.version>5.0.5.RELEASE</springsecurity.version>
-		<hibernate.version>5.3.1.Final</hibernate.version>
+		<springframework.version>5.2.2.RELEASE</springframework.version> 
+		<springsecurity.version>5.2.2.RELEASE</springsecurity.version>
+		<hibernate.version>5.4.10.Final</hibernate.version>
 		<hibernatevalidator.version>5.4.2.Final</hibernatevalidator.version>
 		<c3p0.version>0.9.5.2</c3p0.version>
-		<mysql.connector.version>8.0.11</mysql.connector.version>
+		<mysql.connector.version>8.0.18</mysql.connector.version>
 		<validation.version>1.1.0.Final</validation.version>
 		<servlets.version>4.0.1</servlets.version>
 		<jsp.version>2.3.2-b02</jsp.version>
@@ -70,7 +70,7 @@
     		<version>${springsecurity.version}</version>
 		</dependency>
         
-        <!-- Hibernate 5.3.1 Final -->
+        <!-- Hibernate-core -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
@@ -169,7 +169,15 @@
 		    <groupId>com.sun.xml.bind</groupId>
 		    <artifactId>jaxb-impl</artifactId>
 		    <version>2.2.11</version>
-		</dependency>       	
+		</dependency>  
+		
+		<!-- lombok -->
+		<dependency>
+		    <groupId>org.projectlombok</groupId>
+		    <artifactId>lombok</artifactId>
+		    <version>1.18.12</version>
+		    <scope>provided</scope>
+		</dependency>				     	
 	</dependencies>
 	
 	<build>
