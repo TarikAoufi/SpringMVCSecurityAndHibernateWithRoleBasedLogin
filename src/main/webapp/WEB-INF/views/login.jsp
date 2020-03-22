@@ -52,8 +52,8 @@
 								</div>
 							</c:if>
 							<div class="input-group input-sm">
-								<label class="input-group-addon" for="user_name"><i class="fa fa-user"></i></label>
-								<input type="text" class="form-control" id="user_name" name="username" placeholder="<spring:message code="login.form.placeholder.username"/>" required>
+								<label class="input-group-addon" for="username"><i class="fa fa-user"></i></label>
+								<input type="text" class="form-control" id="username" name="username" placeholder="<spring:message code="login.form.placeholder.username"/>" required>
 							</div>
 							<div class="input-group input-sm">
 								<label class="input-group-addon" for="password"><i class="fa fa-lock"></i></label> 
