@@ -5,17 +5,17 @@ import java.util.List;
 
 public interface UserService {
 	
-	User findById(int arg0);
+	User findById(int id);
 
-	User findByUname(String arg0);
+	User findByUserName(String userName);
 
-	void saveUser(User arg0);
+	void saveUser(User user);
 
-	void updateUser(User arg0);
+	void updateUser(User user);
 
-	void deleteUserByUname(String arg0);
+	void deleteUserByUserName(String userName);
 
 	List<User> findAllUsers();
 
-	boolean isUserUNAMEUnique(Integer arg0, String arg1);
+	boolean isUserUNAMEUnique(Integer id, String userName);
 }
