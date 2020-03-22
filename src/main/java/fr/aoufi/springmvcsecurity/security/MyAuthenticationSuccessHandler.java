@@ -17,7 +17,7 @@ import org.springframework.security.web.WebAttributes;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 import fr.aoufi.springmvcsecurity.model.RoleType;
-import fr.aoufi.springmvcsecurity.utility.Const;
+import fr.aoufi.springmvcsecurity.utility.Const; 
 
 public class MyAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
