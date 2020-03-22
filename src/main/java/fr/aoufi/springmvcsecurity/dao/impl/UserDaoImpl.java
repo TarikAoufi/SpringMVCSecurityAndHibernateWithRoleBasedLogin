@@ -1,19 +1,23 @@
 package fr.aoufi.springmvcsecurity.dao.impl;
 
-import fr.aoufi.springmvcsecurity.dao.UserDao;
-import fr.aoufi.springmvcsecurity.dao.impl.AbstractDao;
-import fr.aoufi.springmvcsecurity.model.User;
 import java.util.List;
+
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+
 import org.hibernate.Hibernate;
 import org.hibernate.query.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
+import fr.aoufi.springmvcsecurity.dao.UserDao;
+import fr.aoufi.springmvcsecurity.model.User;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
 @Repository("userDao")
 public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 
@@ -34,30 +38,29 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 		criteriaQuery.select(userRoot);
 
 		Query<User> query = getSession().createQuery(criteriaQuery);
-		List<User> users = query.getResultList();
 
-		// Décommenter les lignes ci-dessous pour récupérer les roles
+		// DÃ©commenter les lignes ci-dessous pour rÃ©cupÃ©rer les roles
 		// d'utilisateurs,
-		// si on veux éventuellement les afficher sur la liste des utilisateurs.
+		// si on veux Ã©ventuellement les afficher sur la liste des utilisateurs.
 		/*
 		 * for(User user : users){ Hibernate.initialize(user.getRoles()); }
 		 */
-		return users;
+		return query.getResultList();
 	}
 
 	@Override
 	public void save(User user) {
 		persist(user);
-	 // getSession().save(user); // équivaut
+	 // getSession().save(user); // Ã©quivaut
 	}
 
 	@Override
-	public void deleteByUname(String uname) {
+	public void deleteByUserName(String uname) {
 
 		CriteriaQuery<User> criteriaQuery = getCriteriaBuilder().createQuery(User.class);
 		Root<User> root = criteriaQuery.from(User.class);
 		criteriaQuery.select(root);
-		criteriaQuery.where(getCriteriaBuilder().equal(root.get("username"), uname));
+		criteriaQuery.where(getCriteriaBuilder().equal(root.get("userName"), uname));
 		TypedQuery<User> typedQuery = getSession().createQuery(criteriaQuery);
 		try {
 			User user = typedQuery.getSingleResult();
@@ -68,13 +71,13 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 	}
 
 	@Override
-	public User findByUname(String uname) {
-		logger.info("UNAME : {}", uname);
+	public User findByUserName(String userName) {
+		logger.info("UserName : {}", userName);
 
 		CriteriaQuery<User> criteriaQuery = getCriteriaBuilder().createQuery(User.class);
 		Root<User> root = criteriaQuery.from(User.class);
 		criteriaQuery.select(root);
-		criteriaQuery.where(getCriteriaBuilder().equal(root.get("username"), uname));
+		criteriaQuery.where(getCriteriaBuilder().equal(root.get("userName"), userName));
 		TypedQuery<User> typedQuery = getSession().createQuery(criteriaQuery);
 		try {
 			User user = typedQuery.getSingleResult();
