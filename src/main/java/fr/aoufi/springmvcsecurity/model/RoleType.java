@@ -2,19 +2,18 @@ package fr.aoufi.springmvcsecurity.model;
 
 import java.io.Serializable;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@AllArgsConstructor
+@Getter
 public enum RoleType implements Serializable {
 	
-	ADMIN("ADMIN"), 
-	DBA("DBA"), 
-	USER("USER");
+	ADMIN("ADMIN", 30), 
+	DBA("DBA", 20), 
+	USER("USER", 10);
 
-	String roleType;
+	String role;
+	int sessionTime;
 
-	private RoleType(String roleType) {
-		this.roleType = roleType;
-	}
-
-	public String getRoleType() {
-		return this.roleType;
-	}
 }
