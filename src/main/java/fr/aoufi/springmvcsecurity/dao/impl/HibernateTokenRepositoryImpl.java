@@ -6,6 +6,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.web.authentication.rememberme.PersistentRememberMeToken;
@@ -24,49 +25,49 @@ public class HibernateTokenRepositoryImpl extends AbstractDao<String, Persistent
 
 	@Override
 	public void createNewToken(PersistentRememberMeToken token) {
-		logger.info("Création de jeton pour l'utilisateur : {}", token.getUsername());
+		logger.info("CrÃ©ation de jeton pour l'utilisateur : {}", token.getUsername());
 		PersistentLogin persistentLogin = new PersistentLogin();
-		persistentLogin.setUser_name(token.getUsername());
+		persistentLogin.setUserName(token.getUsername());
 		persistentLogin.setSeries(token.getSeries());
 		persistentLogin.setToken(token.getTokenValue());
-		persistentLogin.setLast_used(token.getDate());
-		persist(persistentLogin); // getSession().save(logins);
+		persistentLogin.setLastUsed(token.getDate());
+		persist(persistentLogin);
 	}
 
 	@Override
 	public void updateToken(String seriesId, String tokenValue, Date lastUsed) {
-		logger.info("Mise à jour du jeton pour seriesId : {}", seriesId);		
+		logger.info("Mise Ã  jour du jeton pour seriesId : {}", seriesId);		
 		PersistentLogin persistentLogin = getByKey(seriesId);
 		persistentLogin.setToken(tokenValue);
-		persistentLogin.setLast_used(lastUsed);
+		persistentLogin.setLastUsed(lastUsed);
 		update(persistentLogin);
 	}
 	
 	@Override
 	public PersistentRememberMeToken getTokenForSeries(String seriesId) {
-		logger.info("Récupérer un jeton s'il y en a pour seriesId : ", seriesId);
+		logger.info("RÃ©cupÃ©rer un jeton s'il y en a pour seriesId : {}", seriesId);
 		PersistentLogin persistentLogin = getSession().get(PersistentLogin.class, seriesId);
 		if (persistentLogin != null) {
-			return new PersistentRememberMeToken(persistentLogin.getUser_name(), persistentLogin.getSeries(),
-					persistentLogin.getToken(), persistentLogin.getLast_used());
+			return new PersistentRememberMeToken(persistentLogin.getUserName(), persistentLogin.getSeries(),
+					persistentLogin.getToken(), persistentLogin.getLastUsed());
 		} else {
-			logger.info("Jeton non trouvé...");
+			logger.info("Jeton non trouvÃ©...");
 			return null;
 		}
 	}
 
 	@Override
-	public void removeUserTokens(String user_name) {
-		logger.info("Suppression du jeton s'il y en a un pour l'utilisateur : {}", user_name);		
+	public void removeUserTokens(String userName) {
+		logger.info("Suppression du jeton s'il y en a un pour l'utilisateur : {}", userName);		
 		CriteriaQuery<PersistentLogin> criteriaQuery = getCriteriaBuilder().createQuery(PersistentLogin.class);
 		Root<PersistentLogin> root = criteriaQuery.from(PersistentLogin.class);
 		criteriaQuery.select(root);
-		criteriaQuery.where(getCriteriaBuilder().equal(root.get("user_name"), user_name));		
+		criteriaQuery.where(getCriteriaBuilder().equal(root.get("userName"), userName));		
 		TypedQuery<PersistentLogin> typedQuery = getSession().createQuery(criteriaQuery);
 		try {
 			PersistentLogin persistentLogin = typedQuery.getSingleResult();
 			if (persistentLogin != null) {
-				logger.info("souviens-moi a été sélectionné");
+				logger.info("souviens-moi a Ã©tÃ© sÃ©lectionnÃ©");
 				delete(persistentLogin);
 			}
 		} catch (final NoResultException nre) {
@@ -74,7 +75,7 @@ public class HibernateTokenRepositoryImpl extends AbstractDao<String, Persistent
 		}
 	}
 	
-	/*// Autre manière : On peut utiliser une requête hql
+	/*// Autre maniÃ¨re : On peut utiliser une requÃªte hql
 	@Override
 	public void removeUserTokens(String user_name) {
 		getSession().createQuery("delete from PersistentLogin"
