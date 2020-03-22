@@ -1,7 +1,9 @@
 package fr.aoufi.springmvcsecurity.configuration;
 
 import java.util.Properties;
+
 import javax.sql.DataSource;
+
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,12 +25,14 @@ public class DataConfiguration {
 	
 	private Logger logger = LoggerFactory.getLogger(DataConfiguration.class);
 	
+	private static final String PACKAGE_MODEL = "fr.aoufi.springmvcsecurity.model";
+	
 	@Autowired
 	private Environment environment; 
 	
 	@Bean
 	public DataSource dataSource() {		
-		logger.info("Chargement de la source de données.");
+		logger.info("Chargement de la source de donnÃ©es.");
 		BasicDataSource dataSource = new BasicDataSource();
 		dataSource.setDriverClassName(environment.getRequiredProperty("jdbc.driverClassName"));
 		dataSource.setUrl(environment.getRequiredProperty("jdbc.url"));
@@ -41,7 +45,7 @@ public class DataConfiguration {
 	public LocalSessionFactoryBean sessionFactory() {
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 		sessionFactory.setDataSource(dataSource());
-		sessionFactory.setPackagesToScan(new String[] { "fr.aoufi.springmvcsecurity.model" });
+		sessionFactory.setPackagesToScan(PACKAGE_MODEL);
 		sessionFactory.setHibernateProperties(hibernateProperties());
 		return sessionFactory;
 	}
