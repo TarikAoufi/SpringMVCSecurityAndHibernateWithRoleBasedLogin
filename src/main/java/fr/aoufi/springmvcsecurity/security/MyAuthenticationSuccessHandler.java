@@ -20,14 +20,14 @@ import fr.aoufi.springmvcsecurity.model.RoleType;
 import fr.aoufi.springmvcsecurity.utility.Const;
 
 public class MyAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
-	
-	protected Logger logger = LoggerFactory.getLogger(this.getClass());	 
-    private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
-	
+
+	protected Logger logger = LoggerFactory.getLogger(this.getClass());
+	private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
+
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException {
-		
+
 		String targetUrl = targetUrlSessionTimeoutByRole(request, authentication);
 
 		if (response.isCommitted()) {
@@ -36,40 +36,41 @@ public class MyAuthenticationSuccessHandler implements AuthenticationSuccessHand
 		}
 
 		redirectStrategy.sendRedirect(request, response, targetUrl);
-		
-        clearAuthenticationAttributes(request);
-	
+
+		clearAuthenticationAttributes(request);
+
 	}
-	
+
 	/**
-	 * Permet de déterminer l'URL vers laquelle l'utilisateur sera redirigé après la connexion, 
-	 * et de gérer l'expiration de la session, en fonction du rôle utilisateur.
+	 * Permet de déterminer l'URL vers laquelle l'utilisateur sera redirigé après la
+	 * connexion, et de gérer l'expiration de la session, en fonction du rôle
+	 * utilisateur.
 	 * 
 	 * @param request
 	 * @param authentication
-	 * @return  determineTargetUrl
+	 * @return determineTargetUrl
 	 */
 	protected String targetUrlSessionTimeoutByRole(HttpServletRequest request, Authentication authentication) {
-		
+
 		Set<String> roles = AuthorityUtils.authorityListToSet(authentication.getAuthorities());
 		HttpSession session = request.getSession(false);
 
 		switch (String.join("", roles)) {
-		    case Const.ADMIN_ROLE:
-		    	session.setMaxInactiveInterval(RoleType.ADMIN.getSessionTime());
-				return "/list";
-		    case Const.DBA_ROLE:
-		    	session.setMaxInactiveInterval(RoleType.DBA.getSessionTime());
-				return "/list";
-		    case Const.USER_ROLE:
-		    	session.setMaxInactiveInterval(RoleType.USER.getSessionTime());
-				return "/welcome";
-		    default:
-		    	throw new IllegalStateException();
+		case Const.ADMIN_ROLE:
+			session.setMaxInactiveInterval(RoleType.ADMIN.getSessionTime());
+			return "/list";
+		case Const.DBA_ROLE:
+			session.setMaxInactiveInterval(RoleType.DBA.getSessionTime());
+			return "/list";
+		case Const.USER_ROLE:
+			session.setMaxInactiveInterval(RoleType.USER.getSessionTime());
+			return "/welcome";
+		default:
+			throw new IllegalStateException();
 		}
 
 	}
-	
+
 	/**
 	 * Pour effacer les attributs d'authentification
 	 * 
