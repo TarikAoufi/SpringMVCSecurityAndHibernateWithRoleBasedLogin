@@ -8,7 +8,7 @@
 	<name>SpringMVCSecurityAndHibernateWithRoleBasedLogin</name>
 	
 	<properties>
-		<springframework.version>5.2.2.RELEASE</springframework.version> 
+		<springframework.version>5.2.4.RELEASE</springframework.version> 
 		<springsecurity.version>5.2.2.RELEASE</springsecurity.version>
 		<hibernate.version>5.4.10.Final</hibernate.version>
 		<hibernatevalidator.version>5.4.2.Final</hibernatevalidator.version>
