@@ -18,7 +18,7 @@
 </head>
 
 <body>
-    <!-- Page incluant l'entête -->
+    <!-- Page incluant l'entÃªte -->
     <jsp:include page="header.jsp"/>
     <div id="myDIV">
   		<h5><%@include file="authheader.jsp" %></h5>
@@ -48,15 +48,15 @@
 	    		<tbody>
 				<c:forEach items="${users}" var="user">
 					<tr>
-						<td>${user.username}</td>
+						<td>${user.userName}</td>
 						<td>${user.firstName}</td>
 						<td>${user.lastName}</td>
 						<td>${user.email}</td>						
 					    <sec:authorize access="hasRole('ADMIN') or hasRole('DBA')">
-							<td><a href="<c:url value='/edit-user-${user.username}' />" class="btn btn-warning btn-xs custom-width"><spring:message code="userslist.btn.edit"/></a></td>
+							<td><a href="<c:url value='/edit-user-${user.userName}' />" class="btn btn-warning btn-xs custom-width"><spring:message code="userslist.btn.edit"/></a></td>
 				        </sec:authorize>
 				        <sec:authorize access="hasRole('ADMIN')">
-							<td><a href="<c:url value='/delete-user-${user.username}' />" class="btn btn-danger btn-xs custom-width"><spring:message code="userslist.btn.delete"/></a></td>
+							<td><a href="<c:url value='/delete-user-${user.userName}' />" class="btn btn-danger btn-xs custom-width"><spring:message code="userslist.btn.delete"/></a></td>
         				</sec:authorize>
 					</tr>
 				</c:forEach>
