@@ -54,19 +54,19 @@
 	
 			<div class="row">
 				<div class="form-group col-md-12">
-					<label class="col-md-3 control-lable" for="username"><spring:message code="registration.form.username"/></label>
+					<label class="col-md-3 control-lable" for="userName"><spring:message code="registration.form.username"/></label>
 					<div class="col-sm-5">
 						<c:choose>
 							<c:when test="${edit}">
-								<form:input type="text" path="username" id="username" autofocus="true" class="form-control input-sm" disabled="true"/>
+								<form:input type="text" path="userName" id="userName" autofocus="true" class="form-control input-sm" disabled="true"/>
 							</c:when>
 							<c:otherwise>
-								<form:input type="text" path="username" id="username" autofocus="true" class="form-control input-sm" />								
+								<form:input type="text" path="userName" id="userName" autofocus="true" class="form-control input-sm" />								
 							</c:otherwise>
 						</c:choose>
 					</div>
 					<div class="has-error">
-						<form:errors path="username" class="help-inline"/>
+						<form:errors path="userName" class="help-inline"/>
 					</div>
 				</div>
 			</div>
