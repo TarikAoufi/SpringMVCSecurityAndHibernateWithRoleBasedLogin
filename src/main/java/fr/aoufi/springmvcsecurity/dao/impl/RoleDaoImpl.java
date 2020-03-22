@@ -30,11 +30,10 @@ public class RoleDaoImpl extends AbstractDao<Integer, Role> implements RoleDao {
 		Root<Role> roleRoot = criteriaQuery.from(Role.class);
 		criteriaQuery.select(roleRoot);
 
-		// Utiliser des critères de requête avec session pour récupérer tous les rôles
+		// Utiliser des critÃ¨res de requÃªte avec session pour rÃ©cupÃ©rer tous les rÃ´les
 		Query<Role> query = getSession().createQuery(criteriaQuery);
-		List<Role> roles = query.getResultList();
 
-		return roles;
+		return query.getResultList();
 	}
 
 	@Override
