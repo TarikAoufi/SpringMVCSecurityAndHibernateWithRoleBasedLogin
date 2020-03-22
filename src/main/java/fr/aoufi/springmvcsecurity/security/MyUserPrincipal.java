@@ -2,6 +2,7 @@ package fr.aoufi.springmvcsecurity.security;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.GrantedAuthority;
@@ -10,27 +11,25 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import fr.aoufi.springmvcsecurity.model.Role;
 import fr.aoufi.springmvcsecurity.model.User;
+import lombok.AllArgsConstructor;
 
+@AllArgsConstructor
 public class MyUserPrincipal implements UserDetails {
-	
+
 	private static final long serialVersionUID = -5770481993511453324L;
-	
+
 	static final Logger logger = LoggerFactory.getLogger(MyUserPrincipal.class);
-	
+
 	private User user;
 
-	public MyUserPrincipal(User user) {
-		this.user = user;
-	}
-
 	@Override
-    public List<GrantedAuthority> getAuthorities(){
-		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();		
-		for(Role role : user.getRoles()){
-			logger.info("Rôle : ", role);
-			authorities.add(new SimpleGrantedAuthority("ROLE_"+role.getType()));
+	public List<GrantedAuthority> getAuthorities() {
+		List<GrantedAuthority> authorities = new ArrayList<>();
+		for (Role role : user.getRoles()) {
+			logger.info("RÃ´le : {}", role);
+			authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getType()));
 		}
-		logger.info("Autorités : ", authorities);
+		logger.info("AutoritÃ©s : {}", authorities);
 		return authorities;
 	}
 
@@ -41,7 +40,7 @@ public class MyUserPrincipal implements UserDetails {
 
 	@Override
 	public String getUsername() {
-		return user.getUsername();
+		return user.getUserName();
 	}
 
 	@Override
