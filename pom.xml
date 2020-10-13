@@ -20,7 +20,7 @@
 		<jstl.version>1.2</jstl.version>
 		<commonsdbcp2.version>2.2.0</commonsdbcp2.version>
 		<logback.version>1.2.3</logback.version>
-		<junit.version>4.12</junit.version>
+		<junit.version>4.13.1</junit.version>
 		<maven.compiler.target>1.9</maven.compiler.target>
 		<maven.compiler.source>1.9</maven.compiler.source>
 	</properties>
