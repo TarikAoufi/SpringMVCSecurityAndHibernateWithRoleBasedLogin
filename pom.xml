@@ -9,7 +9,7 @@
 	
 	<properties>
 		<springframework.version>5.2.5.RELEASE</springframework.version> 
-		<springsecurity.version>5.2.2.RELEASE</springsecurity.version>
+		<springsecurity.version>5.2.10.RELEASE</springsecurity.version>
 		<hibernate.version>5.4.10.Final</hibernate.version>
 		<hibernatevalidator.version>5.4.2.Final</hibernatevalidator.version>
 		<c3p0.version>0.9.5.5</c3p0.version>
